@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"log"
+	"main/core"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -32,7 +33,8 @@ func main() {
 		w.WriteHeader(http.StatusForbidden)
 	})
 
-	http.ListenAndServe(":8000", router)
+	//Done temporary, don't touch yet ok
+	core.Ignite(router)
 }
 
 func currentRequestedRoute(next http.Handler) http.Handler {

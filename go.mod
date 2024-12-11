@@ -1,4 +1,4 @@
-module github.com/adorufus/backend_project
+module main
 
 go 1.23.4
 
