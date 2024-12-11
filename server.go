@@ -5,8 +5,6 @@ import (
 	"log"
 	"main/core"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 type User struct {
@@ -18,11 +16,8 @@ type User struct {
 var users []User
 
 func main() {
-	router := mux.NewRouter()
-	api := router.PathPrefix("/api").Subrouter()
 
-	//Handle Not Found
-	api.NotFoundHandler = http.HandlerFunc(notFound)
+	core.StartRouter("/api/v1")
 
 	//handle middleware
 	api.Use(currentRequestedRoute)
@@ -34,7 +29,7 @@ func main() {
 	})
 
 	//Done temporary, don't touch yet ok
-	core.Ignite(router)
+	core.Ignite("8000")
 }
 
 func currentRequestedRoute(next http.Handler) http.Handler {
